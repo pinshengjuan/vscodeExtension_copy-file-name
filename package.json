@@ -1,0 +1,177 @@
+{
+  "name": "copy-file-name",
+  "displayName": "Copy File Name",
+  "description": "",
+  "icon": "img/icon/CopyFilename.png",
+  "version": "0.0.1",
+  "publisher": "pinshengjuan",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pinshengjuan/vscodeExtension_copy-file-name"
+  },
+  "activationEvents": [
+    "onCommand:copy-file-name.keybinding",
+    "workspaceContains:*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "keybindings": [
+      {
+        "command": "copy-file-name.withExtension",
+        "key": "ctrl+alt+shift+Q",
+        "mac": "cmd+alt+shift+Q",
+        "when": "filesExplorerFocus || editorTextFocus"
+      },
+      {
+        "command": "copy-file-name.withoutExtension",
+        "key": "ctrl+alt+shift+W",
+        "mac": "cmd+alt+shift+W",
+        "when": "filesExplorerFocus || editorTextFocus"
+      },
+      {
+        "command": "copy-file-name.relativeWithExtension",
+        "key": "ctrl+alt+shift+E",
+        "mac": "cmd+alt+shift+E",
+        "when": "filesExplorerFocus || editorTextFocus"
+      },
+      {
+        "command": "copy-file-name.relativeWithoutExtension",
+        "key": "ctrl+alt+shift+R",
+        "mac": "cmd+alt+shift+R",
+        "when": "filesExplorerFocus || editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "Copy File Name",
+      "properties": {
+        "copy-file-name.filenameCopiedNotification": {
+          "type": "boolean",
+          "default": true,
+          "description": "Set to show a notification about file name copied."
+        },
+        "copy-file-name.symbol": {
+          "type": "string",
+          "default": null,
+          "description": "The symbol between filenames for multiple files.\nDefault is \"\\n\""
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "copy-file-name.withExtension",
+        "when": "filesExplorerFocus || editorTextFocus",
+        "title": "Copy File Name (with extension)"
+      },
+      {
+        "command": "copy-file-name.withoutExtension",
+        "when": "filesExplorerFocus || editorTextFocus",
+        "title": "Copy File Name (without extension)"
+      },
+      {
+        "command": "copy-file-name.relativeWithExtension",
+        "when": "filesExplorerFocus || editorTextFocus",
+        "title": "Copy Relative Path (with extension)"
+      },
+      {
+        "command": "copy-file-name.relativeWithoutExtension",
+        "when": "filesExplorerFocus || editorTextFocus",
+        "title": "Copy Relative Path (without extension)"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "!explorerResourceIsFolder",
+          "command": "copy-file-name.withExtension",
+          "group": "9_cutcopypaste@"
+        },
+        {
+          "when": "!explorerResourceIsFolder",
+          "command": "copy-file-name.withoutExtension",
+          "group": "9_cutcopypaste@"
+        },
+        {
+          "when": "!explorerResourceIsFolder",
+          "command": "copy-file-name.relativeWithExtension",
+          "group": "9_cutcopypaste@"
+        },
+        {
+          "when": "!explorerResourceIsFolder",
+          "command": "copy-file-name.relativeWithoutExtension",
+          "group": "9_cutcopypaste@"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "when": "!explorerResourceIsFolder",
+          "command": "copy-file-name.withExtension",
+          "group": "mygroup@1"
+        },
+        {
+          "when": "!explorerResourceIsFolder",
+          "command": "copy-file-name.withoutExtension",
+          "group": "mygroup@1"
+        },
+        {
+          "when": "!explorerResourceIsFolder",
+          "command": "copy-file-name.relativeWithExtension",
+          "group": "mygroup@1"
+        },
+        {
+          "when": "!explorerResourceIsFolder",
+          "command": "copy-file-name.relativeWithoutExtension",
+          "group": "mygroup@1"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "!explorerResourceIsFolder",
+          "command": "copy-file-name.withExtension",
+          "group": "5_cutcopypaste@"
+        },
+        {
+          "when": "!explorerResourceIsFolder",
+          "command": "copy-file-name.withoutExtension",
+          "group": "5_cutcopypaste@"
+        },
+        {
+          "when": "!explorerResourceIsFolder",
+          "command": "copy-file-name.relativeWithExtension",
+          "group": "5_cutcopypaste@"
+        },
+        {
+          "when": "!explorerResourceIsFolder",
+          "command": "copy-file-name.relativeWithoutExtension",
+          "group": "5_cutcopypaste@"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.70.0",
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "eslint": "^8.20.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "typescript": "^4.7.4",
+    "@vscode/test-electron": "^2.1.5"
+  }
+}
